@@ -109,6 +109,6 @@ constructor(public http: HttpClient) {
 }
 
   getPeople(): Observable<any> {
-    return this.http.get("http://www.json-generator.com/api/json/get/cghlMAGJvm...")
+    return this.http.get("http://www.json-generator.com/api/json/get/cghlMAGJvm?indent=10")
   }
 }
