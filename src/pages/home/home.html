@@ -1,0 +1,47 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+      Ionic Blank
+    </ion-title>
+    <ion-buttons end>
+      <button ion-button (click)="toggleReorder()">
+Edit
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-refresher (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content>
+
+    </ion-refresher-content>
+  </ion-refresher>
+<ion-list [reorder]="shouldReorder" (ionItemReorder)="$event.applyTo(people)">
+
+<ion-item-sliding *ngFor="let person of people">
+
+  <ion-item >
+    <ion-avatar item-left>
+      <img src="http://moziru.com/images/portrait-clipart-avatar-14.png" alt="avatar">
+    </ion-avatar>
+    {{person.name.first}}
+    {{person.name.last}}
+    <ion-note item-right> {{person.phone}}</ion-note>
+  </ion-item>
+
+<ion-item-options side="right">
+<button ion-button>Call</button>
+</ion-item-options>
+  <ion-item-options side="left">
+    <button ion-button>Delete</button>
+  </ion-item-options>
+
+</ion-item-sliding>
+
+
+
+</ion-list>
+
+  <pre>{{person | json}}</pre>
+</ion-content>
