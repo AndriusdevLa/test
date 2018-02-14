@@ -7,23 +7,29 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { People } from '../providers/people/people';
-
+import { DetailPage } from '../pages/detail/detail'
+import { StartPage } from '../pages/start/start'
 
 @NgModule({
   declarations: [
     MyApp,
-    HomePage
+    StartPage,
+    HomePage,
+    DetailPage
+
+
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
     IonicModule.forRoot(MyApp),
-
   ],
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
-    HomePage
+    StartPage,
+    HomePage,
+    DetailPage
   ],
   providers: [
     HttpClient,

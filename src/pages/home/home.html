@@ -1,7 +1,13 @@
 <ion-header>
   <ion-navbar>
+    <ion-buttons left>
+<button ion-button icon-only menuToggle>
+  <ion-icon name="menu"></ion-icon>
+</button>
+    </ion-buttons>
+
     <ion-title>
-      Ionic Blank
+      Fail
     </ion-title>
     <ion-buttons end>
       <button ion-button (click)="toggleReorder()">
@@ -11,37 +17,56 @@ Edit
   </ion-navbar>
 </ion-header>
 
-<ion-content padding>
+<ion-content>
   <ion-refresher (ionRefresh)="doRefresh($event)">
     <ion-refresher-content>
 
     </ion-refresher-content>
   </ion-refresher>
-<ion-list [reorder]="shouldReorder" (ionItemReorder)="$event.applyTo(people)">
-
-<ion-item-sliding *ngFor="let person of people">
-
-  <ion-item >
-    <ion-avatar item-left>
-      <img src="http://moziru.com/images/portrait-clipart-avatar-14.png" alt="avatar">
-    </ion-avatar>
-    {{person.name.first}}
-    {{person.name.last}}
-    <ion-note item-right> {{person.phone}}</ion-note>
-  </ion-item>
-
-<ion-item-options side="right">
-<button ion-button>Call</button>
-</ion-item-options>
-  <ion-item-options side="left">
-    <button ion-button>Delete</button>
-  </ion-item-options>
-
-</ion-item-sliding>
 
 
+  <ion-list [reorder]="shouldReorder" (ionItemReorder)="$event.applyTo(people)">
+  <ion-card *ngFor="let person of people"
+            (click)="pushPage(person)"
+  >
+    <ion-item>
+      <p>{{person.name.first}} {{person.name.last}}</p>
+      <ion-avatar item-left>
+        <img [src]="person.picture.large" alt="">
+      </ion-avatar>
+    </ion-item>
 
-</ion-list>
+    <iframe width="100%" src="https://www.youtube.com/embed/3BXDsVD6O10?list=RDMM3BXDsVD6O10" frameborder="0" allowfullscreen></iframe>
+    <ion-card-content>
+      <ion-card-title>
+       {{person.login.password}}
+      </ion-card-title>
+      <p>
+        The most popular industrial group ever, and largely
+        responsible for bringing the music to a mass audience.
+      </p>
+    </ion-card-content>
+  </ion-card>
+   </ion-list>
 
+
+<!-- <ion-item-options side="right">
+     <button ion-button>Call</button>
+      <button ion-button color="danger" icon-only>
+        <ion-icon name="archive"></ion-icon>
+      </button>
+      </ion-item-options>
+
+      <ion-item-options side="left">
+        <button ion-button color="secondary" icon-only>
+          <ion-icon name="flag"></ion-icon>
+        </button>
+      </ion-item-options>   -->
+
+  <ion-infinite-scroll (ionInfinite)="doInfinite($event)">
+    <ion-infinite-scroll-content>
+
+    </ion-infinite-scroll-content>
+  </ion-infinite-scroll>
   <pre>{{person | json}}</pre>
 </ion-content>
