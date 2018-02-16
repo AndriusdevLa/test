@@ -1,6 +1,6 @@
 {
   "name": "myFail",
-  "app_id": "",
+  "app_id": "2a596640",
   "type": "ionic-angular",
   "integrations": {
     "cordova": {}
