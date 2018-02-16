@@ -1,7 +1,5 @@
 import { Component } from '@angular/core';
-import { ModalController, IonicPage } from 'ionic-angular';
-import { DetailPage } from '../detail/detail';
-import { ToastController } from 'toast-controller';
+import {IonicPage, ToastController} from 'ionic-angular';
 import { AngularFireAuth } from "angularfire2/auth";
 import { User } from '../../app/modals/user';
 
@@ -14,9 +12,10 @@ export class HomePage {
 //public shouldReorder = false;
   user = {} as User;
 
-  constructor(private aFAuth: AngularFireAuth,
+  constructor(
+    private aFAuth: AngularFireAuth,
               private toastCtrl: ToastController,
-              public modalCtrl: ModalController)
+              )
   {
     //this.service.getPeople().subscribe( data => {
     //    this.people = data.results
@@ -30,29 +29,27 @@ export class HomePage {
     this.aFAuth.authState.subscribe(data => {
       if(data.email && data.uid) {
         let toast = this.toastCtrl.create({
-          message: 'User was added successfully',
-          duration: 3000,
-          position: 'top'
+          message: `Welcome ${data.email}`,
+          duration: 5000,
+          position: 'bottom'
         });
 
         toast.onDidDismiss(() => {
           console.log('Dismissed toast');
         });
         toast.present();
-      }
 
+      }
       else {
         let toast = this.toastCtrl.create({
           message: 'User not found',
           duration: 3000,
-          position: 'top'
+          position: 'bottom'
         });
         toast.present();
       }
-    });
+    })
   }
-
-
 
 
 
@@ -74,10 +71,12 @@ export class HomePage {
   //  this.shouldReorder = !this.shouldReorder
   // }
 
-  pushPage(user) {
+  //pushPage(user) {
 
-    this.modalCtrl.create(DetailPage, user).present()
-  }
+  //  this.modalCtrl.create(DetailPage, user).present()
+ // }
+
+
 
     //zemiau registruoju page kad galeciau backinti
     //this.navCtrl.push(DetailPage, user)

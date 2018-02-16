@@ -37,4 +37,6 @@ catch (e){
 register(){
     this.navCtrl.push('RegisterPage');
 }
+
+
 }

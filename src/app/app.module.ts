@@ -1,7 +1,8 @@
+
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClient, HttpClientModule } from "@angular/common/http";
 import { ErrorHandler, NgModule } from '@angular/core';
-import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
+import {IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
 import { MyApp } from './app.component';
@@ -12,6 +13,7 @@ import { AngularFireModule } from "angularfire2";
 import { FIREBASE_CONFIG } from "./app.firebase.config";
 import { LoginPage } from "../pages/login/login";
 import { AngularFireAuthModule } from "angularfire2/auth";
+import { ProfilePage } from "../pages/profile/profile";
 
 
 @NgModule({
@@ -20,7 +22,9 @@ import { AngularFireAuthModule } from "angularfire2/auth";
     StartPage,
     HomePage,
     DetailPage,
-    LoginPage
+    LoginPage,
+    ProfilePage
+
 
   ],
   imports: [
@@ -28,7 +32,10 @@ import { AngularFireAuthModule } from "angularfire2/auth";
     HttpClientModule,
     IonicModule.forRoot(MyApp),
     AngularFireModule.initializeApp(FIREBASE_CONFIG),
-    AngularFireAuthModule
+    AngularFireAuthModule,
+
+
+
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -37,11 +44,13 @@ import { AngularFireAuthModule } from "angularfire2/auth";
     HomePage,
     DetailPage,
     LoginPage,
+    ProfilePage,
   ],
   providers: [
     HttpClient,
     StatusBar,
     SplashScreen,
+
     {provide: ErrorHandler, useClass: IonicErrorHandler},
 
   ]
