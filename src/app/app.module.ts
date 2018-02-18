@@ -1,7 +1,7 @@
 
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClient, HttpClientModule } from "@angular/common/http";
-import { ErrorHandler, NgModule } from '@angular/core';
+import {ErrorHandler, Injectable, NgModule} from '@angular/core';
 import {IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
@@ -17,8 +17,34 @@ import { ProfilePage } from "../pages/profile/profile";
 import { HomePageModule } from "../pages/home/home.module";
 import { AngularFireDatabaseModule } from "angularfire2/database-deprecated";
 import { Camera } from "@ionic-native/camera";
+import { Pro } from "@ionic/pro";
+import { Injector } from '@angular/core';
 
 
+Pro.init('2a596640', {
+  appVersion: 'v1'
+})
+
+@Injectable()
+export class MyErrorHandler implements ErrorHandler {
+  ionicErrorHandler: IonicErrorHandler;
+
+  constructor(injector: Injector) {
+    try {
+      this.ionicErrorHandler = injector.get(IonicErrorHandler);
+    } catch(e) {
+      // Unable to get the IonicErrorHandler provider, ensure
+      // IonicErrorHandler has been added to the providers list below
+    }
+  }
+
+  handleError(err: any): void {
+
+    // Remove this if you want to disable Ionic's auto exception handling
+    // in development mode.
+    this.ionicErrorHandler && this.ionicErrorHandler.handleError(err);
+  }
+}
 
 
 @NgModule({
@@ -52,6 +78,7 @@ import { Camera } from "@ionic-native/camera";
     StatusBar,
     SplashScreen,
     Camera,
+    IonicErrorHandler,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
   ]
 })
