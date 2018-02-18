@@ -1,7 +1,9 @@
 import { Component } from '@angular/core';
-import {IonicPage, ToastController} from 'ionic-angular';
+import { IonicPage, ToastController } from 'ionic-angular';
 import { AngularFireAuth } from "angularfire2/auth";
 import { User } from '../../app/modals/user';
+import { Profile } from "../../app/modals/profile";
+import { AngularFireDatabase, FirebaseObjectObservable } from "angularfire2/database-deprecated";
 
 @IonicPage()
 @Component({
@@ -9,10 +11,11 @@ import { User } from '../../app/modals/user';
   templateUrl: 'home.html'
 })
 export class HomePage {
+  profileData: FirebaseObjectObservable<Profile>
 //public shouldReorder = false;
   user = {} as User;
 
-  constructor(
+  constructor( private afDatabase: AngularFireDatabase,
     private aFAuth: AngularFireAuth,
               private toastCtrl: ToastController,
               )
@@ -37,8 +40,9 @@ export class HomePage {
         toast.onDidDismiss(() => {
           console.log('Dismissed toast');
         });
-        toast.present();
 
+        toast.present();
+        this.profileData = this.afDatabase.object(`profile/${data.uid}`)
       }
       else {
         let toast = this.toastCtrl.create({

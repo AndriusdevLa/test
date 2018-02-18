@@ -14,5 +14,19 @@
 
 
 <ion-content padding>
+  <button ion-button (click)="takePhoto()">Take photo</button>
+<ion-item>
+  <ion-label floating>First Name :</ion-label>
+  <ion-input [(ngModel)]="profile.firstName"></ion-input>
+</ion-item>
+  <ion-item>
+    <ion-label floating>Last Name :</ion-label>
+    <ion-input [(ngModel)]="profile.lastName"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label>Date</ion-label>
+    <ion-datetime displayFormat="MM/DD/YYYY" [(ngModel)]="profile.birthDate"></ion-datetime>
+  </ion-item>
 
+  <button ion-button clear block (click)="createProfile()">Save</button>
 </ion-content>

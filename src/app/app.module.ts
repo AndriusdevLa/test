@@ -14,18 +14,20 @@ import { FIREBASE_CONFIG } from "./app.firebase.config";
 import { LoginPage } from "../pages/login/login";
 import { AngularFireAuthModule } from "angularfire2/auth";
 import { ProfilePage } from "../pages/profile/profile";
+import { HomePageModule } from "../pages/home/home.module";
+import { AngularFireDatabaseModule } from "angularfire2/database-deprecated";
+import { Camera } from "@ionic-native/camera";
+
+
 
 
 @NgModule({
   declarations: [
     MyApp,
     StartPage,
-    HomePage,
     DetailPage,
     LoginPage,
-    ProfilePage
-
-
+    ProfilePage,
   ],
   imports: [
     BrowserModule,
@@ -33,9 +35,8 @@ import { ProfilePage } from "../pages/profile/profile";
     IonicModule.forRoot(MyApp),
     AngularFireModule.initializeApp(FIREBASE_CONFIG),
     AngularFireAuthModule,
-
-
-
+    AngularFireDatabaseModule,
+    HomePageModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -50,9 +51,8 @@ import { ProfilePage } from "../pages/profile/profile";
     HttpClient,
     StatusBar,
     SplashScreen,
-
+    Camera,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-
   ]
 })
 export class AppModule {}

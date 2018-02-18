@@ -14,5 +14,10 @@
 
 
 <ion-content padding>
-
+ <ion-list>
+   <ion-avatar>Avataras</ion-avatar>
+   <ion-item>First name : {{(profileData | async)?.firstName}}</ion-item>
+   <ion-item>Last name : {{(profileData | async)?.lastName}}</ion-item>
+   <ion-item>Birth date : {{(profileData | async)?.birthDate}}</ion-item>
+ </ion-list>
 </ion-content>

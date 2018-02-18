@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import {User} from "../../app/modals/user";
 import { AngularFireAuth } from "angularfire2/auth";
-import { HomePage } from "../home/home";
 /**
  * Generated class for the LoginPage page.
  *
@@ -26,7 +25,7 @@ try {
 const result = this.aFAuth.auth.signInWithEmailAndPassword(user.email,
   user.password);
 if(result) {
-  this.navCtrl.setRoot(HomePage)
+  this.navCtrl.setRoot('HomePage')
 }
 
 }
